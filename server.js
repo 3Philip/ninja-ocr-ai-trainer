@@ -1,13 +1,15 @@
+
 const express = require("express");
 const cors = require("cors");
 const fs = require("fs");
+require("dotenv").config();
 
 const app = express();
 
 app.use(cors());
 app.use(express.json());
 
-const API_KEY = "process.env.API_KEY"; // 替换为你的API密钥
+const API_KEY = process.env.API_KEY; // 替换为你的API密钥
 
 // 读取记忆
 function loadMemory() {

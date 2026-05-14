@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Ninja AI Trainer</title>
+  <style>
+    body {
+      font-family: Arial;
+      max-width: 600px;
+      margin: 50px auto;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+    }
+    button {
+      padding: 10px;
+      margin-top: 10px;
+    }
+    pre {
+      background: #f4f4f4;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<h2>🏋️ Ninja OCR AI Trainer</h2>
+
+<p>输入你的训练水平：</p >
+
+<textarea id="input">引体20个，单手悬挂10秒，目标提升握力</textarea>
+
+<br>
+
+<button onclick="generate()">生成训练计划</button>
+
+<h3>结果：</h3>
+<pre id="output"></pre>
+
+<script>
+async function generate() {
+  const input = document.getElementById("input").value;
+
+  const res = await fetch("http://localhost:3000/api", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ input })
+  });
+
+  const data = await res.json();
+  document.getElementById("output").innerText = data.result;
+}
+</script>
+
+</body>
+</html>
